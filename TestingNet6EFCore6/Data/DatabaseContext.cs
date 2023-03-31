@@ -31,7 +31,7 @@ namespace TestingNet6EFCore6.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PeopleParentGroup>()
-                .HasKey(o => new { o.PersonId, o.ParentGroupId });
+               .HasKey(o => new { o.PersonId, o.ParentGroupId });
 
             // https://learn.microsoft.com/en-us/ef/core/modeling/relationships/many-to-many
             modelBuilder.Entity<People>()
