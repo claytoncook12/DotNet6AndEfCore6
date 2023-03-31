@@ -10,5 +10,6 @@ namespace TestingNet6EFCore6.Models
     {
         public int Id { get; set; }
         public string GroupTitle { get; set; } = null!;
+        public List<People> Peoples { get; } = new();
     }
 }

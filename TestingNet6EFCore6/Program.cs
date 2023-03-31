@@ -12,20 +12,8 @@ namespace TestingNet6EFCore6
             DatabaseContext context = new DatabaseContext();
 
             // Add Data
-            People person = new People()
-            {
-                FirstName = "Test",
-                LastName = "Last"
-            };
-            context.People.Add(person);
 
-            ParentGroup group = new ParentGroup()
-            {
-                GroupTitle = "NewGroup"
-            };
-            context.ParentGroups.Add(group);
 
-            context.SaveChanges();
             Console.WriteLine("Finished Database Operations");
         }
     }

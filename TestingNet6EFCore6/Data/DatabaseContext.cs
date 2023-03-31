@@ -32,6 +32,16 @@ namespace TestingNet6EFCore6.Data
         {
             modelBuilder.Entity<PeopleParentGroup>()
                 .HasKey(o => new { o.PersonId, o.ParentGroupId });
+
+            // https://learn.microsoft.com/en-us/ef/core/modeling/relationships/many-to-many
+            modelBuilder.Entity<People>()
+                .HasMany(e => e.ParentGroups)
+                .WithMany(e => e.Peoples)
+                .UsingEntity(
+                    "PeopleParentGroup",
+                    l => l.HasOne(typeof(Models.ParentGroup)).WithMany().HasForeignKey("ParentGroupId").HasPrincipalKey(nameof(Models.ParentGroup.Id)),
+                    r => r.HasOne(typeof(Models.People)).WithMany().HasForeignKey("PersonId").HasPrincipalKey(nameof(Models.People.PersonId)),
+                    j => j.HasKey("PersonId", "ParentGroupId"));
         }
     }
 }

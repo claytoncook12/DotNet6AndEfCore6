@@ -16,6 +16,21 @@ namespace TestingNet6EFCore6.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
 
+            modelBuilder.Entity("PeopleParentGroup", b =>
+                {
+                    b.Property<int>("PersonId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ParentGroupId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("PersonId", "ParentGroupId");
+
+                    b.HasIndex("ParentGroupId");
+
+                    b.ToTable("PeopleParentGroup");
+                });
+
             modelBuilder.Entity("TestingNet6EFCore6.Models.ParentGroup", b =>
                 {
                     b.Property<int>("Id")
@@ -68,6 +83,21 @@ namespace TestingNet6EFCore6.Migrations
                     b.HasIndex("PeoplePersonId");
 
                     b.ToTable("PeopleParentGroups");
+                });
+
+            modelBuilder.Entity("PeopleParentGroup", b =>
+                {
+                    b.HasOne("TestingNet6EFCore6.Models.ParentGroup", null)
+                        .WithMany()
+                        .HasForeignKey("ParentGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TestingNet6EFCore6.Models.People", null)
+                        .WithMany()
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TestingNet6EFCore6.Models.PeopleParentGroup", b =>

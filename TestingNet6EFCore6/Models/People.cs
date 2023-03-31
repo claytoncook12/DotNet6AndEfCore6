@@ -13,5 +13,6 @@ namespace TestingNet6EFCore6.Models
         public int PersonId { get; set; }
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
+        public List<ParentGroup> ParentGroups { get; } = new();
     }
 }
